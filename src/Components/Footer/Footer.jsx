@@ -6,7 +6,7 @@ import { Instagram, LinkedIn, X, GitHub, YouTube } from "@mui/icons-material";
 
 function Footer() {
   return (
-    <div className="z-40 w-full flex items-center justify-center mt-24">
+    <div className="z-40 w-full flex items-center justify-center mt-24 text-white">
       <div className="w-full pb-7 bg-violet-400 relative">
         <div>
           <GitStar />
@@ -43,7 +43,7 @@ function Footer() {
             <div>{/* feedback here */}</div>
           </div>
         </div>
-        <div className="w-fullborder-white border-t sm:flex flex-col items-center justify-between text-center pt-2">
+        <div className="w-full border-white border-t sm:flex-row flex flex-col items-center justify-between text-center pt-3 px-5">
           <div>
             <Link to={""}>
               Privacy Policy
