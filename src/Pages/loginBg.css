@@ -1,0 +1,6 @@
+.bg{
+  background-image: url('/src/assets/leaf.jpg');
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
