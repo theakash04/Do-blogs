@@ -2,17 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Logout, Button } from "../components";
 import { useSelector } from "react-redux";
+import TollTwoTone from "@mui/icons-material/TollTwoTone";
 
 function Navbar() {
   const authStatus = useSelector((state) => state.auth.status);
 
   return (
-    <div className="bg-black/25 max-w-lappy w-[98%] mt-1 backdrop-blur-md rounded-lg flex items-center justify-between px-4 py-4 z-20 select-none top-0">
+    <div className="bg-black/25 max-w-lappy w-[98%] mt-1 backdrop-blur-md rounded-lg flex items-center justify-between px-4 py-4 z-20 select-none top-0 text-white">
       <div>
         <Link to={"/"}>
-          <p className="font-bold text-xl text-green-500 hover:text-green-400 hover:scale-105 filter drop-shadow-md">
-            Do-Blogs
-          </p>
+          <div className="font-bold text-xl text-green-500 hover:text-green-400 hover:scale-105 filter drop-shadow-md">
+            <TollTwoTone sx={{fontSize: "36px"}}/>
+          </div>
         </Link>
       </div>
       {authStatus ? (

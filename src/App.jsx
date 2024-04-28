@@ -28,10 +28,7 @@ function App() {
       {load ? (
         <Loading />
       ) : (
-        <>
-          {/* <div className="w-full h-full justify-center flex">
-            <Navbar />
-          </div> */}
+        <>         
           <Outlet />
         </>
       )}

@@ -4,11 +4,15 @@
 
 :root{
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color: white;;
   /* background-color: #242424; */
   background-color: #ced3da;
   overflow-x: hidden;
   user-select: text;
+  color: black;
+}
+
+::-webkit-scrollbar{
+  display: none;
 }
 
 /* :root {

@@ -9,7 +9,7 @@ import Footer from './Footer/Footer';
 
 export {
   AuthLayout,
-  Input,  
+  Input, 
   Button,
   Logout,
   Loading,

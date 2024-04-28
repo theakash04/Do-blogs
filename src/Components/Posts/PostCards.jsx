@@ -1,18 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function PostCards() {
+function PostCards({label = "unknow", title, description, imageLink}) {
   return (
-    <a
-      href="#"
-      className="block max-w-[600px] p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-        Noteworthy technology acquisitions 2021
-      </h5>
-      <p className="font-normal text-gray-700 ">
-        Here are the biggest enterprise technology acquisitions of 2021 so far,
-        in reverse chronological order.
-      </p>
-    </a>
+    <div className="bg-white w-full h-auto rounded-lg flex flex-col items-center justify-center p-1 shadow-sm">
+      <Link to={""}>
+        <div className="relative w-full h-40 overflow-hidden">
+          <img src={imageLink} alt="" className="rounded-md w-full" />
+          <div className="bg-white/30 absolute right-2 top-2 rounded-md font-bold px-2 text-sm backdrop-blur-md text-white">
+            {label}
+          </div>
+        </div>
+      </Link>
+      <div className="w-full font-bold text-xl px-2 pt-3">{title}</div>
+      <div className="w-full text-gray-700 pl-2 text-md pb-3 pt-1">
+        {description}
+      </div>
+    </div>
   );
 }
 
