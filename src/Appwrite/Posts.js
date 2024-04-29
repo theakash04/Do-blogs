@@ -4,17 +4,24 @@ import { Client, ID, Databases, Storage, Query } from "appwrite";
 export class PostServices {
   client = new Client();
   databases;
-  bucket;
+  storage;
 
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrl)
-      .setEndpoint(conf.appwriteProjectId);
+      .setProject(conf.appwriteProjectId);
     this.databases = new Databases(this.client);
-    this.bucket = new Storage(this.client);
+    this.storage = new Storage(this.client);
   }
 
-  async createPost({ title, description, slug, content, featuredImage, userId }) {
+  async createPost({
+    title,
+    description,
+    slug,
+    content,
+    featuredImage,
+    userId,
+  }) {
     try {
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
@@ -29,11 +36,15 @@ export class PostServices {
         }
       );
     } catch (error) {
+      console.log(slug);
       console.log("Error :: CreatePost function ", error);
     }
   }
 
-  async updatePost(slug, { title, description, content, featuredImage, userId }) {
+  async updatePost(
+    slug,
+    { title, description, content, featuredImage, userId }
+  ) {
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
@@ -91,19 +102,20 @@ export class PostServices {
   //file storage services
   async uploadImage(file) {
     try {
-      return await this.bucket.createFile(
-        conf.appwriteBucketId,
+      return await this.storage.createFile(
+        conf.appwriteStorageID,
         ID.unique(),
         file
       );
     } catch (error) {
-      console.log("Error :: FileUploading", error);
+      // throw error;
+      console.log("ERROR :: uploadImage ::", error);
     }
   }
 
   async deleteImage(fileId) {
     try {
-      await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
+      await this.storage.deleteFile(conf.appwriteStorageID, fileId);
       return true;
     } catch (error) {
       console.log("error :: file delete function ", error);
@@ -111,9 +123,9 @@ export class PostServices {
   }
 
   getFilePreview(fileId) {
-    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+    return this.storage.getFilePreview(conf.appwriteStorageID, fileId);
   }
 }
 
-const postServices = new PostServices;
+const postServices = new PostServices();
 export default postServices;

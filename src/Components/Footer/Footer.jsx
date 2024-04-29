@@ -44,7 +44,7 @@ function Footer() {
           </div>
         </div>
         <div className="w-full border-white border-t sm:flex-row flex flex-col items-center justify-between text-center pt-3 px-5">
-          <div>
+          <div className="flex gap-4">
             <Link to={""}>
               Privacy Policy
             </Link>
@@ -53,7 +53,7 @@ function Footer() {
             </Link>
           </div>
           <div>
-              &copy; 2024 All Rights Reserved &bull; Akash
+              &copy; 2024 &bull; Akash, All Rights
           </div>
         </div>
       </div>

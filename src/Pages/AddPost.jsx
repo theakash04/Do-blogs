@@ -1,9 +1,10 @@
 import React from "react";
+import {PostForm} from '../Components/components'
 
 export default function AddPost() {
   return (
     <div>
-      Add post page!
+      <PostForm />
     </div>
   );
 }
