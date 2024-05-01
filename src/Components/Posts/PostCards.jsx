@@ -1,51 +1,82 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import postServices from "../../Appwrite/Posts";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
+import authService from "../../Appwrite/Auth";
+import { Avatar } from "@mui/material";
 
-function PostCards({ title, description, featuredImage, $id }) {
+function PostCards({ title, description, $id , $updatedAt, userId, tag}) {
+
+  const date = new Date($updatedAt);
+  const [tags, setTags] = useState([]);
+
+  
+
+  useEffect(()=>{
+    if(tag){
+      const arr = tag.split(',').map(item => '#' + item);
+      setTags(arr);
+      //try to add this in Edit post which is post form
+    }else{
+      setTags(["#Unknow"])
+    }
+  },[])
+
+
+  function formatRelative(date){
+    const now = new Date();
+    const diff = now - date;
+
+    const seconds = Math.floor(diff/1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    if(days > 1){
+      return `${days} days ago`;
+    }else if(hours >= 24 && days <= 1){
+      return `Yesterday`
+    }else if(hours > 1 && hours < 24){
+      return `${hours} hours ago`;
+    }else if(minutes > 1){
+      return `${minutes} minutes ago`;
+    }else{
+      return 'Just now';
+    }
+  }
+
+
+  const localDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const Time = formatRelative(date);
+
+  const titleCapitalize = title.charAt(0).toUpperCase() + title.slice(1);
+
+
   return (
-    <Link to={`/post/${$id}`}>
-      <Card sx={{ maxWidth: 700 , maxHeight: 600}}>
-        <CardActionArea sx={{width: "700px"}}>
-          <CardMedia 
-            component="img"
-            sx={{height:"140px", backgroundSize: "cover"}}
-            image={postServices.getFilePreview(featuredImage)}
-            alt={`${$id}`}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div" sx={{fontSize: "25px"}}>
-              {title}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </Link>
-
-    // <div className="bg-white sm:w-full h-auto rounded-lg flex flex-col items-center justify-center p-1 shadow-sm z-30">
-    //   <Link to={`/post/${$id}`}>
-    //     <div className="relative w-full h-56 overflow-hidden">
-    //       <img src={postServices.getFilePreview(featuredImage)} alt="" className="rounded-md w-full z-40" />
-    //       {/* <div className="bg-white/30 absolute right-2 top-2 rounded-md font-bold px-2 text-sm backdrop-blur-md text-white">
-    //         {label}
-    //       </div> */}
-    //     </div>
-    //   </Link>
-    //   <div className="w-full font-bold text-xl px-2 pt-3">{title}</div>
-    //   <div className="w-full text-gray-700 pl-2 text-md pb-3 pt-1">
-    //     {description}
-    //   </div>
-    // </div>
+    <>
+      <Link to={`/post/${$id}`}>
+        <div className="bg-white grid rounded-md justify-between overflow-hidden transition-all">
+          <div className="grid gap-1 px-4 py-4" >
+            <div className="flex gap-2 items-center justify-start pb-1">
+              <Avatar src="" alt="" sx={{width: 34, height: 34}}/>
+              <div className="text-sm text-gray-700 flex flex-col">
+                <div className="font-semibold hover:text-gray-900 transition-all">{"Akash kumar"}</div>
+                <span className="text-xs hover:text-black transition-all flex gap-1">
+                  <p>{localDate}</p>
+                  <p>{`(${Time})`}</p>
+                </span>
+              </div>
+            </div>
+            <p className="font-bold text-xl pt-3 hover:text-[#485df9]">{titleCapitalize}</p>
+            <div className="flex text-xs text-gray-500 pb-3 h-10 gap-2 items-center w-full">
+              {tags.map((Ptag, index) => (
+                <p className="hover:bg-gray-100 px-2 py-1 rounded-md border hover:border-gray-200 border-white" key={index}>{Ptag}</p>
+              ))}
+              
+            </div>
+            <p className="text-gray-700 text-sm font-semibold">{description}</p>
+          </div>
+        </div>
+      </Link>
+    </>
   );
 }
 

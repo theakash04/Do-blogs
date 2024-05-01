@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import authService from "../Appwrite/Auth";
 import "./loginBg.css";
-import { Button, Input } from "../Components/components.js";
+import { ButtonJS, Input } from "../Components/components.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Alert } from "@mui/material";
@@ -62,8 +62,7 @@ function Login() {
                   {...register("password")}
                   placeholder="create a new password"
                 />
-                <Button
-                  className="rounded-full font-bold py-3 hover:bg-blue-500 transition-all"
+                <ButtonJS
                   children={"Sign up"}
                   type="submit"
                 />

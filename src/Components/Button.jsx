@@ -1,11 +1,12 @@
 import React from 'react'
+import { Button } from '@mui/material'
 
-function Button({children, type="button", bgColor="bg-blue-600", textColor="text-white", className="", ...props}) {
+function ButtonJS({children, variant,...props}) {
   return (
-    <button className={`px-4 py-2 rounded-md hover:bg-blue-700 transition-all ${bgColor} ${textColor} ${className}`} {...props}>
+    <Button className='' {...props} variant='contained'>
       {children}
-    </button>
+    </Button>
   )
 }
 
-export default Button
+export default ButtonJS

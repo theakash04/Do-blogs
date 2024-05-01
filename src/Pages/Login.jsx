@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import authService from "../Appwrite/Auth";
 import "./loginBg.css";
-import { Button, Input, Loading } from "../Components/components.js";
+import { ButtonJS, Input, Loading } from "../Components/components.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../Store/authSlice.js";
@@ -96,8 +96,7 @@ function Login() {
                     </p>
                   )}
                 </div>
-                <Button
-                  className="rounded-full font-bold py-3 hover:bg-blue-500 transition-all"
+                <ButtonJS
                   children={"Log in"}
                   type="submit"
                 />

@@ -12,6 +12,7 @@ export class AuthService {
     this.account = new Account(this.client);
   }
 
+
   async CreateAccount({ email, name, password }) {
     try {
       const userAccount = await this.account.create(
@@ -27,7 +28,7 @@ export class AuthService {
         return userAccount;
       }
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
@@ -43,7 +44,7 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      throw error
+      throw error;
     }
     // return null;
   }
@@ -53,11 +54,11 @@ export class AuthService {
       await this.account.deleteSessions();
       return true;
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 }
 
 const authService = new AuthService();
 
-export default authService
+export default authService;

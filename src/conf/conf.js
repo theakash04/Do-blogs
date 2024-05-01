@@ -5,7 +5,8 @@ conf = {
   appwriteDatabaseId: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
   appwriteCollectionId: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID),
   appwriteStorageID: String(import.meta.env.VITE_APPWRITE_STORAGE_ID),
-  tinymceApi: String(import.meta.env.VITE_TINYMCE_API)
+  tinymceApi: String(import.meta.env.VITE_TINYMCE_API),
+  appwriteApi: String(import.meta.env.VITE_APPWRITE_API),
 }
 
 

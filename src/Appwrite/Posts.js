@@ -21,6 +21,7 @@ export class PostServices {
     content,
     featuredImage,
     userId,
+    tag
   }) {
     try {
       return await this.databases.createDocument(
@@ -33,17 +34,17 @@ export class PostServices {
           content,
           featuredImage,
           userId,
+          tag,
         }
       );
     } catch (error) {
-      console.log(slug);
       console.log("Error :: CreatePost function ", error);
     }
   }
 
   async updatePost(
     slug,
-    { title, description, content, featuredImage, userId }
+    { title, description, content, featuredImage, userId, tag }
   ) {
     try {
       return await this.databases.updateDocument(
@@ -56,6 +57,7 @@ export class PostServices {
           content,
           featuredImage,
           userId,
+          tag,
         }
       );
     } catch (error) {

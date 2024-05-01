@@ -1,27 +1,31 @@
-import React from 'react'
-import authService from '../Appwrite/Auth'
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { logout } from '../Store/authSlice';
+import React from "react";
+import authService from "../Appwrite/Auth";
+import { useDispatch } from "react-redux";
+import { logout } from "../Store/authSlice";
+import { Button } from "@mui/material";
 
 function Logout() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  async function logoutUser(){
+  async function logoutUser() {
     try {
       const userLogOut = await authService.logout();
-      if(userLogOut) dispatch(logout());
+      const Interval = setInterval(() => {
+        if (userLogOut) dispatch(logout());
+      },0);
       location.reload();
+
+      return clearInterval(Interval);
     } catch (error) {
-      console.log(error.message);
+      throw error.message;
     }
   }
 
   return (
-    <button className='bg-blue-600 px-4 py-2 rounded-md shadow-md font-bold hover:opacity-90 transition-opacity' onClick={logoutUser}> 
+    <Button onClick={logoutUser} variant="contained">
       Logout
-    </button>
-  )
+    </Button>
+  );
 }
 
-export default Logout
+export default Logout;

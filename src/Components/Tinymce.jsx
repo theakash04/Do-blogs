@@ -19,6 +19,7 @@ function Tinymce({name, label, control, defaultValue="", className}) {
             init={{
               height: 500,
               menubar: false,
+              placeholder: "Content here....",
               plugins: [
                 "advlist",
                 "autolink",
@@ -31,7 +32,7 @@ function Tinymce({name, label, control, defaultValue="", className}) {
                 "searchreplace",
                 "visualblocks",
                 "code",
-                // "fullscreen",
+                "fullscreen",
                 "insertdatetime",
                 "media",
                 "table",
@@ -45,7 +46,7 @@ function Tinymce({name, label, control, defaultValue="", className}) {
                 "alignright alignjustify | bullist numlist outdent indent | " +
                 "removeformat | help",
               content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:20px }",
             }}
             onEditorChange={onChange}
           />

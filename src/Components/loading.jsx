@@ -1,11 +1,22 @@
-import React from 'react'
+import React from "react";
+import "ldrs/trefoil";
 
 function Loading() {
   return (
-    <div className='w-screen h-screen flex absolute bg-black/30 backdrop-blur-sm z-50'>
-      <div className='w-12 h-12 border-4 border-solid border-transparent border-t-4 border-t-blue-500 rounded-full m-auto animate-spin' />
+    <div
+      className="w-screen h-screen flex absolute bg-black/30 backdrop-blur-sm items-center justify-center"
+      style={{ zIndex: "100" }}
+    >
+      <l-trefoil
+        size="60"
+        speed="1.5"
+        color="blue"
+        stroke={4}
+        stroke-length={0.15}
+        bg-opacity={0.1}
+      ></l-trefoil>
     </div>
-  )
+  );
 }
 
-export default Loading
+export default Loading;
