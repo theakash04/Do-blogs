@@ -17,6 +17,7 @@ function Posts() {
 
   async function gettingPost() {
     const AllPosts = await postServices.getAllPost();
+    console.log(AllPosts.featuredImage)
     if (AllPosts) {
       setPosts(AllPosts.documents);
     }
@@ -24,14 +25,14 @@ function Posts() {
 
   return (
     <Container>
-      <div className="py-3 max-w-[700px] w-full mx-auto px-3 sm:px-0 h-screen">
+      <div className="py-3 max-w-[700px] w-full mx-auto px-3 sm:px-0 max-h-screen overflow-auto">
         <div className="flex flex-col-reverse gap-5">
           {posts.length == 0 ? (
             <SkellyLoad />
           ) : (
             posts.map((post) => (
               <div key={post.$id}>
-                <PostCards {...post} />
+                <PostCards {...post}/>
               </div>
             ))
           )}

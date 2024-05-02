@@ -8,7 +8,8 @@ export class AuthService {
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrl)
-      .setProject(conf.appwriteProjectId);
+      .setProject(conf.appwriteProjectId)
+      .setLocale('en');
     this.account = new Account(this.client);
   }
 
@@ -31,6 +32,15 @@ export class AuthService {
       throw error;
     }
   }
+
+  //learn and add It
+  // async verifyUser(email){
+  //   try {
+  //     return await this.account.createVerification(email)
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
 
   async login({ email, password }) {
     try {

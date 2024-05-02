@@ -46,9 +46,7 @@ const router = createBrowserRouter([
       {
         path: "/post/:slug",
         element: (
-          <AuthLayout authentication={false}>
             < ViewPost/>
-          </AuthLayout>
         )
       },
       {

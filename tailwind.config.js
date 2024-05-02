@@ -1,18 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      spacing:{
-        'lappy': '1280px'
+      spacing: {
+        lappy: "1280px",
       },
-      backgroundImage:{
-        'login-bg' : "url('/assests/leaf.jpg')"
-      }
+      backgroundImage: {
+        "login-bg": "url('/assests/leaf.jpg')",
+      },
     },
   },
-  plugins: [],
-}
+  plugins: [
+    require("@tailwindcss/typography")({
+      className: "slave",
+    }),
+    require("daisyui"),
+  ],
+};

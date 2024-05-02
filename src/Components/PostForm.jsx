@@ -53,6 +53,10 @@ function PostForm({ post }) {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
+    if(post){
+      const arr = post.tag.split(',');
+      setTags(arr);
+    }
     const unloadCallback = (event) => {
       event.preventDefault();
       event.returnValue = "";
@@ -147,7 +151,8 @@ function PostForm({ post }) {
 
   function addTag() {
     if (tagInput.trim() !== "" && !tags.includes(tagInput)) {
-      setTags([...tags, tagInput.trim()]);
+      const hasTag = "#" + tagInput
+      setTags([...tags, hasTag.trim()]);
       setTagInput("");
     }
   }
@@ -213,7 +218,7 @@ function PostForm({ post }) {
                       )}
                     </div>
 
-                    <div className="flex gap-2 items-center ">
+                    <div className="flex flex-col gap-2 ">
                       <ul className="flex gap-4">
                         {tags.map((tag, index) => (
                           <li

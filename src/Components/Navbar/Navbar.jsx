@@ -9,6 +9,7 @@ function Navbar() {
   const authStatus = useSelector((state) => state.auth.status);
 
 
+
   return (
     <div className="bg-black/25 max-w-lappy w-[98%] mt-1 backdrop-blur-md rounded-lg flex items-center justify-between px-4 py-4 z-20 select-none top-0 text-white">
       <div>

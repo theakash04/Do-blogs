@@ -48,9 +48,6 @@ function Footer() {
             <Link to={""}>
               Privacy Policy
             </Link>
-            <Link to={""}>
-              Source Code
-            </Link>
           </div>
           <div>
               &copy; 2024 &bull; Akash, All Rights

@@ -1,25 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import authService from "../../Appwrite/Auth";
+// import authService from "../../Appwrite/Auth";
 import { Avatar } from "@mui/material";
+import userService from "../../Appwrite/Users";
 
-function PostCards({ title, description, $id , $updatedAt, userId, tag}) {
+function PostCards({ title, description, $id , $updatedAt, tag, userId}) {
 
   const date = new Date($updatedAt);
   const [tags, setTags] = useState([]);
+  const [author, setAuthor] = useState("");
 
   
 
   useEffect(()=>{
     if(tag){
-      const arr = tag.split(',').map(item => '#' + item);
+      const arr = tag.split(',');
       setTags(arr);
-      //try to add this in Edit post which is post form
+      getUser();
     }else{
       setTags(["#Unknow"])
     }
   },[])
 
+
+  async function getUser(){
+    // const authorName = await userService.getUserDetails(userId)
+    if(authorName){
+      setAuthor(authorName);
+    }
+  }
 
   function formatRelative(date){
     const now = new Date();
@@ -56,9 +65,9 @@ function PostCards({ title, description, $id , $updatedAt, userId, tag}) {
         <div className="bg-white grid rounded-md justify-between overflow-hidden transition-all">
           <div className="grid gap-1 px-4 py-4" >
             <div className="flex gap-2 items-center justify-start pb-1">
-              <Avatar src="" alt="" sx={{width: 34, height: 34}}/>
+              <Avatar src="asd" alt={author ? author : "unknow"} sx={{width: 34, height: 34}}/>
               <div className="text-sm text-gray-700 flex flex-col">
-                <div className="font-semibold hover:text-gray-900 transition-all">{"Akash kumar"}</div>
+                <div className="font-semibold hover:text-gray-900 transition-all">{author ? author : "Unknow"}</div>
                 <span className="text-xs hover:text-black transition-all flex gap-1">
                   <p>{localDate}</p>
                   <p>{`(${Time})`}</p>

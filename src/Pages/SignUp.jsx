@@ -5,8 +5,10 @@ import "./loginBg.css";
 import { ButtonJS, Input } from "../Components/components.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Alert } from "@mui/material";
 import { login } from "../Store/authSlice.js";
+import NavLog from "../Components/NavLog.jsx";
+import userService from "../Appwrite/Users.js";
+
 
 function Login() {
   const { register, handleSubmit } = useForm();
@@ -21,6 +23,7 @@ function Login() {
       const userData = await authService.CreateAccount(data);
       if(userData){
         const userData = await authService.getCurrentuser();
+        const StoreUser = await userService.CreateUserDetails(userData);
         if(userData) dispatch(login(userData));
         navigate("/");
       }
@@ -35,7 +38,10 @@ function Login() {
 
   return (
     <div className="bg relative">
-      <div className="w-full h-full flex items-center justify-center bg-black/40 backdrop-blur-sm">
+      <div className="w-full h-full flex items-center justify-center bg-black/40 backdrop-blur-sm relative">
+        <div className="absolute top-0 left-0">
+          <NavLog />
+        </div>
         <div className="bg-[#fafafa] max-w-[450px] sm:w-full w-[350px] rounded-md shadow-lg">
           <div className="flex  flex-col items-center h-full w-full py-10">
             <div className="text-black font-bold text-4xl">Sign up</div>
@@ -45,7 +51,7 @@ function Login() {
                 <Input
                   label="Enter your name?"
                   {...register("name")}
-                  placeholder="Enter your name"
+                  placeholder={"Enter your Name"}
                   type="text"
                 />
                 <Input

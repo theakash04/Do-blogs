@@ -6,7 +6,7 @@ import { ButtonJS, Input, Loading } from "../Components/components.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../Store/authSlice.js";
-
+import NavLog from "../Components/NavLog.jsx";
 
 function Login() {
   const {
@@ -44,7 +44,10 @@ function Login() {
 
   return (
     <div className="bg">
-      <div className="w-full h-full flex items-center justify-center bg-black/40 backdrop-blur-sm">
+      <div className="w-full h-full flex items-center justify-center bg-black/40 backdrop-blur-sm relative">
+        <div className="absolute top-0 left-0">
+          <NavLog />
+        </div>
         <div className="bg-[#fafafa] sm:w-[450px] w-[90%] rounded-md shadow-lg">
           <div className="flex  flex-col items-center h-full w-full py-10">
             <div className="text-black font-bold text-4xl">Log in</div>
@@ -55,7 +58,7 @@ function Login() {
               <div className="flex flex-col gap-5 pt-4">
                 <div className="w-full">
                   <Input
-                    type ="email"
+                    type="email"
                     label="Email"
                     {...register("email", {
                       required: true,
@@ -96,10 +99,7 @@ function Login() {
                     </p>
                   )}
                 </div>
-                <ButtonJS
-                  children={"Log in"}
-                  type="submit"
-                />
+                <ButtonJS children={"Log in"} type="submit" />
               </div>
             </form>
             <span className="text-black pt-10">
