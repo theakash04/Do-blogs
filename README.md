@@ -22,7 +22,7 @@ Hey folks! This is a project known as Do-Blogs which I have made Using ReactJs a
 - Appwrite
 
 ## usage
-To explore Do-Blogs, simply visit [here]()
+To explore Do-Blogs, simply visit [here](https://doblogs.vercel.app/)
 
 ## Installation
 
