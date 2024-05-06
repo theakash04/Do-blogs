@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import authService from "../Appwrite/Auth";
 import LoadingPage from "./Loadings/LoadingPage";
+import { AddCircle, AddCircleTwoTone } from "@mui/icons-material";
 
 function PostNav({ Title }) {
   return (
@@ -229,14 +230,22 @@ function PostForm({ post }) {
                           </li>
                         ))}
                       </ul>
-                      <Input
-                        type="text"
-                        placeholder="Add up to 4 tag..."
-                        value={tagInput}
-                        onChange={handleInputChange}
-                        className="border-none text-lg bg-white shadow-none"
-                        onKeyPress={handleKeyPress}
-                      />
+                      <div className="flex items-center gap-4 justify-center">
+                        <Input
+                          type="text"
+                          placeholder="Add up to 4 tag..."
+                          value={tagInput}
+                          onChange={handleInputChange}
+                          className="border-none text-lg bg-white shadow-none"
+                          onKeyPress={handleKeyPress}
+                        />
+                        <button
+                          onClick={() => addTag()}
+                          className="bg-green-500 rounded-full"
+                        >
+                          <AddCircle sx={{ color: "white", width: "34px", height: "34px"}} />
+                        </button>
+                      </div>
                     </div>
 
                     <div>
