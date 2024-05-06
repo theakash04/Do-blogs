@@ -156,7 +156,7 @@ function PostForm({ post }) {
   }
 
   function handleKeyPress(e) {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.keyCode === 13 || e.key === "Next") {
       e.preventDefault();
       addTag();
     }
