@@ -1,17 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import {
-  ButtonJS,
-  Container,
-  Input,
-  Loading,
-  Tinymce,
-  ImageUPload,
-} from "./components";
+import { ButtonJS, Input, Tinymce } from "./components";
 import postServices from "../Appwrite/Posts";
 import { Link, useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
+import authService from "../Appwrite/Auth";
+import LoadingPage from "./Loadings/LoadingPage";
 
 function PostNav({ Title }) {
   return (
@@ -53,8 +48,8 @@ function PostForm({ post }) {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    if(post){
-      const arr = post.tag.split(',');
+    if (post) {
+      const arr = post.tag.split(",");
       setTags(arr);
     }
     const unloadCallback = (event) => {
@@ -71,46 +66,45 @@ function PostForm({ post }) {
 
   //Function for Uploading post and edit post
   async function submit(data) {
-      try {
-        changeLoadState();
-        if (post) {
-          const file = data.image[0]
-            ? await postServices.uploadImage(data.image[0])
-            : null;
-          if (file) {
-            postServices.deleteImage(post.featuredImage);
-          }
+    try {
+      changeLoadState();
+      if (post) {
+        const file = data.image[0]
+          ? await postServices.uploadImage(data.image[0])
+          : null;
+        if (file) {
+          postServices.deleteImage(post.featuredImage);
+        }
 
-          const dbPost = await postServices.updatePost(post.$id, {
+        const dbPost = await postServices.updatePost(post.$id, {
+          ...data,
+          featuredImage: file ? file.$id : undefined,
+        });
+
+        if (dbPost) {
+          navigate(`/post/${dbPost.$id}`);
+        }
+      } else {
+        const file = await postServices.uploadImage(data.image[0]);
+
+        if (file) {
+          const tag = integrateArrayElem(tags);
+          const fileId = file.$id;
+          data.featuredImage = fileId;
+          const dbPost = await postServices.createPost({
             ...data,
-            featuredImage: file ? file.$id : undefined,
+            userId: userData.$id,
+            tag,
           });
-
           if (dbPost) {
             navigate(`/post/${dbPost.$id}`);
           }
-        } else {
-          const file = await postServices.uploadImage(data.image[0]);
-
-          if (file) {
-            const tag = integrateArrayElem(tags)
-            const fileId = file.$id;
-            data.featuredImage = fileId;
-            const dbPost = await postServices.createPost({
-              ...data,
-              userId: userData.$id,
-              tag
-            });
-            if (dbPost) {
-              navigate(`/post/${dbPost.$id}`);
-            }
-          }
         }
-        changeLoadState();
-      } catch (error) {
-        changeLoadState();
-        console.log(error);
       }
+      changeLoadState();
+    } catch (error) {
+      changeLoadState();
+    }
   }
 
   const slugTransform = useCallback((value) => {
@@ -137,11 +131,11 @@ function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   //integrating array element
-  function integrateArrayElem(array){
+  function integrateArrayElem(array) {
     const endIndex = array.length > 4 ? 3 : array.length - 1;
     const integrateString = array.slice(0, endIndex + 1).join(",");
 
-    return integrateString
+    return integrateString;
   }
 
   // handling tags input
@@ -151,7 +145,7 @@ function PostForm({ post }) {
 
   function addTag() {
     if (tagInput.trim() !== "" && !tags.includes(tagInput)) {
-      const hasTag = "#" + tagInput
+      const hasTag = "#" + tagInput;
       setTags([...tags, hasTag.trim()]);
       setTagInput("");
     }
@@ -168,12 +162,10 @@ function PostForm({ post }) {
     }
   }
 
-
-
   return (
     <>
       {load ? (
-        <Loading />
+        <LoadingPage />
       ) : (
         <div className="max-w-[1180px] mx-auto w-full">
           <PostNav Title={post} />

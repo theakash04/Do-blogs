@@ -9,10 +9,8 @@ export class AuthService {
     this.client
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId)
-      .setLocale('en');
     this.account = new Account(this.client);
   }
-
 
   async CreateAccount({ email, name, password }) {
     try {
@@ -23,24 +21,16 @@ export class AuthService {
         name
       );
       if (userAccount) {
-        //calling another method
         return this.login({ email, password });
       } else {
         return userAccount;
       }
     } catch (error) {
       throw error;
+      // console.log(error)
     }
   }
 
-  //learn and add It
-  // async verifyUser(email){
-  //   try {
-  //     return await this.account.createVerification(email)
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
 
   async login({ email, password }) {
     try {

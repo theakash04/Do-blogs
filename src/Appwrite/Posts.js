@@ -21,7 +21,7 @@ export class PostServices {
     content,
     featuredImage,
     userId,
-    tag
+    tag,
   }) {
     try {
       return await this.databases.createDocument(
@@ -38,7 +38,7 @@ export class PostServices {
         }
       );
     } catch (error) {
-      console.log("Error :: CreatePost function ", error);
+      throw error;
     }
   }
 
@@ -61,7 +61,7 @@ export class PostServices {
         }
       );
     } catch (error) {
-      console.log("Error :: updatePost ", error);
+      throw error
     }
   }
 
@@ -74,7 +74,7 @@ export class PostServices {
       );
       return true;
     } catch (error) {
-      console.log("error :: deletPost ", error);
+      throw error
     }
   }
 
@@ -86,7 +86,7 @@ export class PostServices {
         slug
       );
     } catch (error) {
-      console.log("Error :: getPost", error);
+      throw error
     }
   }
 
@@ -97,7 +97,7 @@ export class PostServices {
         conf.appwriteCollectionId
       );
     } catch (error) {
-      console.log("Error :: GetAllPost function", error);
+      throw error
     }
   }
 
@@ -110,8 +110,7 @@ export class PostServices {
         file
       );
     } catch (error) {
-      // throw error;
-      console.log("ERROR :: uploadImage ::", error);
+      throw error;
     }
   }
 
@@ -120,7 +119,7 @@ export class PostServices {
       await this.storage.deleteFile(conf.appwriteStorageID, fileId);
       return true;
     } catch (error) {
-      console.log("error :: file delete function ", error);
+      throw error
     }
   }
 

@@ -2,11 +2,12 @@ import React, { useRef, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import authService from "../Appwrite/Auth";
 import "./loginBg.css";
-import { ButtonJS, Input, Loading } from "../Components/components.js";
+import { ButtonJS, Input } from "../Components/components.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../Store/authSlice.js";
 import NavLog from "../Components/NavLog.jsx";
+import LoadingPage from "../Components/Loadings/LoadingPage.jsx";
 
 function Login() {
   const {
@@ -113,7 +114,11 @@ function Login() {
             </span>
           </div>
         </div>
-        {loginClicked && <Loading />}
+        {loginClicked && (
+          <div className="absolute bg-white w-full h-full">
+            <LoadingPage text="Logging you in, with ease and security"/>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -21,17 +21,16 @@ export class UserService {
         { name }
       );
     } catch (error) {
-      console.log(error);
+      throw error
     }
   }
 
-  async getUserDetails($id){
+  async getUserDetails(userId){
     try {
       return await this.databases.getDocument(
         conf.appwriteDatabaseId,
         conf.userCollection,
-        $id
-        //fix this
+        userId
       )
     } catch (error) {
       throw error
@@ -39,6 +38,7 @@ export class UserService {
   }
 
   //will make a option to delte if i have account center in website
+
 }
 
 const userService = new UserService();

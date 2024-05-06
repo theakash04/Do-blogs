@@ -27,12 +27,10 @@ function Skelly() {
   );
 }
 
+
 export default function SkellyLoad() {
   return (
-    <div className="grid gap-10">
-      <Skelly />
-      <Skelly />
-      <Skelly />
+    <div className="">
       <Skelly />
     </div>
   );

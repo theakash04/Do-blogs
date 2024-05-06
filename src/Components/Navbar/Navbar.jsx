@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Logout } from "../components";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import { TollTwoTone} from "@mui/icons-material";
+import authService from "../../Appwrite/Auth";
 
 function Navbar() {
   const authStatus = useSelector((state) => state.auth.status);
-
 
 
   return (
@@ -22,7 +22,7 @@ function Navbar() {
       {authStatus ? (
         <div className="flex gap-3 items-center">
           <Link to={"/addPost"}>
-            <Button variant="contained" color="success" >
+            <Button variant="contained" color="success">
               Add Post
             </Button>
           </Link>

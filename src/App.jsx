@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Outlet } from "react-router-dom";
-import { Loading, Navbar } from "./Components/components";
 import { useDispatch } from "react-redux";
 import authService from "./Appwrite/Auth";
-import { login } from "./Store/authSlice";
-import ViewPost from "./Pages/ViewPost";
+import { login, logout } from "./Store/authSlice";
+import LoadingPage from "./Components/Loadings/LoadingPage";
 
 function App() {
   const [load, setLoad] = useState(true);
@@ -16,7 +15,6 @@ function App() {
     .then((userData) => {
       if(userData){
         dispatch(login({userData}))
-        console.log(userData);
       }else{
         dispatch(logout())
       }
@@ -28,7 +26,7 @@ function App() {
   return (
     <>
       {load ? (
-        <Loading />
+        <LoadingPage text="Just Do Blogs! 🗣"/>
       ) : (
         <>         
           <Outlet />
