@@ -5,8 +5,8 @@ import { Avatar } from "@mui/material";
 import userService from "../../Appwrite/Users";
 import SkellyLoad from "../SkeletonLoad";
 
-function PostCards({ title, description, $id, $updatedAt, tag, userId }) {
-  const date = new Date($updatedAt);
+function PostCards({ title, description, $id, $createdAt, tag, userId }) {
+  const date = new Date($createdAt);
   const [tags, setTags] = useState([]);
   const [author, setAuthor] = useState("");
   const [loaded, setloaded] = useState(true);
