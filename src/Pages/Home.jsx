@@ -18,4 +18,3 @@ function Home() {
 
 export default Home;
 
-//saved testing user in appwrite - testing@dex.com || 123456789

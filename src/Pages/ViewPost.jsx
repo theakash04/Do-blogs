@@ -169,7 +169,7 @@ function ViewPost() {
                 </div>
                 <div
                   id="content"
-                  className="px-4 py-3 slave text-black slave-headings:text-black slave-p:py-1 slave-p:my-0 slave-headings:my-5 slave-img:my-4 slave-strong:text-black max-w-none slave-a:text-blue-500 slave-ul:text-black slave-li:text-black slave-ol:text-black"
+                  className="px-4 py-3 slave text-black slave-headings:text-black slave-p:py-1 slave-p:my-0 slave-headings:my-5 slave-img:my-4 slave-strong:text-black max-w-none slave-a:text-blue-500 slave-ul:text-black slave-li:text-black slave-ol:text-black flex flex-col items-center"
                 >
                   {parse(post.content)}
                 </div>
