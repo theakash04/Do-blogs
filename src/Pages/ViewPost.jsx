@@ -99,18 +99,18 @@ function ViewPost() {
         </div>
       </div>
       <div className="p-1 pb-10">
-        <Container>
+        <Container className={""}>
           {load ? (
-            <div className="relative grid gap-6 max-w-[1000px] bg-white pt-1 px-1 pb-10 rounded-md">
-              <div>
-                <img
-                  src={postServices.getFilePreview(post.featuredImage)}
-                  alt="CoverImage"
-                  className="w-[1000px] max-h-[400px] rounded-t-sm"
+            <div className="w-screen grid place-items-center">
+            <div className="relative gap-6 max-w-[1000px] bg-white pt-1 px-1 pb-10 rounded-md grid">
+              <div className="w-full">
+                <div
+                  style={{backgroundImage: `url(${postServices.getFilePreview(post.featuredImage)})`}}
+                  className="rounded-t-sm w-full h-[400px] bg-cover overflow-hidden bg-center"
                 />
               </div>
 
-              <div className="grid px-3 gap-5 w-full">
+              <div className="px-3 gap-5 flex flex-col overflow-hidden w-full">
                 {/* Post Author Name */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -174,6 +174,7 @@ function ViewPost() {
                   {parse(post.content)}
                 </div>
               </div>
+            </div>
             </div>
           ) : (
             <div className="flex items-center justify-center w-full">
