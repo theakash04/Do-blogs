@@ -3,6 +3,7 @@ import PostCards from "./PostCards";
 import postServices from "../../Appwrite/Posts";
 import Container from "../Container";
 import SkellyLoad from "../SkeletonLoad";
+import { Footer } from "../components";
 
 function Posts() {
   const [posts, setPosts] = useState([]);
@@ -23,9 +24,10 @@ function Posts() {
   }
 
   return (
-    <Container>
-      <div className="py-3 max-w-[700px] w-full mx-auto px-3 sm:px-0 max-h-screen overflow-auto">
-        <div className="flex flex-col-reverse gap-5">
+    <Container className={""}>
+      
+      <div className=" max-w-screen w-full mx-auto max-h-screen">
+        <div className="flex flex-col-reverse gap-5 pb-20 max-w-[700px] mx-auto px-3 pt-5">
           {posts.length == 0 ? (
             <div className="grid gap-5">
               <SkellyLoad />
@@ -40,6 +42,9 @@ function Posts() {
               </div>
             ))
           )}
+        </div>
+        <div className="">
+          <Footer />
         </div>
       </div>
     </Container>

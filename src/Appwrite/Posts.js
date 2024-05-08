@@ -124,7 +124,11 @@ export class PostServices {
   }
 
   getFilePreview(fileId) {
-    return this.storage.getFilePreview(conf.appwriteStorageID, fileId);
+    return this.storage.getFilePreview(
+      conf.appwriteStorageID, 
+      fileId,
+      'jpeg'
+    );
   }
 }
 

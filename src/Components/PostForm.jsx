@@ -5,9 +5,9 @@ import { ButtonJS, Input, Tinymce } from "./components";
 import postServices from "../Appwrite/Posts";
 import { Link, useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
-import authService from "../Appwrite/Auth";
 import LoadingPage from "./Loadings/LoadingPage";
-import { AddCircle, AddCircleTwoTone } from "@mui/icons-material";
+import { AddCircle } from "@mui/icons-material";
+import conf from "../conf/conf";
 
 function PostNav({ Title }) {
   return (
@@ -183,7 +183,6 @@ function PostForm({ post }) {
                         label="Add a cover Image"
                         accept="image/png, image/jpg, image/jpeg"
                         {...register("image", { required: !post })}
-                        // onChange={Imageupload}
                         className="border-none bg-white shadow-none"
                       />
                       <span className="bg-black/70 px-2 py-4 group-hover:block hidden text-white absolute group-hover:-bottom-14 rounded-md -left-3 transition-all text-xs">

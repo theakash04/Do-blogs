@@ -53,7 +53,7 @@ function Login() {
           <div className="flex  flex-col items-center h-full w-full py-10">
             <div className="text-black font-bold text-4xl">Log in</div>
             {error && (
-              <div className="text-red-400 pt-5 text-center">{error}</div>
+              <p className="text-red-400 pt-5 text-center w-[90%]">{error}</p>
             )}
             <form onSubmit={handleSubmit(Login)}>
               <div className="flex flex-col gap-5 pt-4">
@@ -73,7 +73,7 @@ function Login() {
                     required={true}
                   />
                   {errors.email && (
-                    <p className="text-red-500 text-sm">
+                    <p className="text-red-500 text-sm text-start w-[90%]">
                       {errors.email.message}
                     </p>
                   )}
@@ -95,7 +95,7 @@ function Login() {
                     required={true}
                   />
                   {errors.password && (
-                    <p className="text-red-500 text-sm">
+                    <p className="text-red-500 text-sm text-start w-[90%]">
                       {errors.password.message}
                     </p>
                   )}

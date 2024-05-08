@@ -6,7 +6,7 @@ import { Instagram, LinkedIn, X, GitHub, YouTube } from "@mui/icons-material";
 
 function Footer() {
   return (
-    <div className="z-40 w-full flex items-center justify-center mt-24 text-white">
+    <div className="w-full flex text-white">
       <div className="w-full pb-7 bg-violet-400 relative">
         <div>
           <GitStar />

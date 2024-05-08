@@ -102,11 +102,11 @@ function ViewPost() {
         <Container className={""}>
           {load ? (
             <div className="w-screen grid place-items-center">
-            <div className="relative gap-6 max-w-[1000px] bg-white pt-1 px-1 pb-10 rounded-md grid">
+            <div className="relative gap-6 max-w-[1000px] bg-white pt-1 px-1 pb-10 rounded-md grid w-full">
               <div className="w-full">
                 <div
                   style={{backgroundImage: `url(${postServices.getFilePreview(post.featuredImage)})`}}
-                  className="rounded-t-sm w-full h-[400px] bg-cover overflow-hidden bg-center"
+                  className="rounded-t-sm w-full sm:h-[400px] h-[250px] bg-cover overflow-hidden bg-center"
                 />
               </div>
 
@@ -169,7 +169,7 @@ function ViewPost() {
                 </div>
                 <div
                   id="content"
-                  className="px-4 py-3 slave text-black slave-headings:text-black slave-p:py-1 slave-p:my-0 slave-headings:my-5 slave-img:my-4 slave-strong:text-black max-w-none slave-a:text-blue-500 slave-ul:text-black slave-li:text-black slave-ol:text-black flex flex-col items-center"
+                  className="px-4 py-3 slave text-black slave-headings:text-black slave-p:py-1 slave-p:my-0 slave-headings:my-5 slave-img:my-4 slave-strong:text-black max-w-none slave-a:text-blue-500 slave-ul:text-black slave-li:text-black slave-ol:text-black"
                 >
                   {parse(post.content)}
                 </div>

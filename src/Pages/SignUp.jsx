@@ -10,10 +10,12 @@ import NavLog from "../Components/NavLog.jsx";
 import userService from "../Appwrite/Users.js";
 import LoadingPage from "../Components/Loadings/LoadingPage.jsx";
 
-
-
 function SignUp() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [passwordVisible, setPasswordVisible] = useState(true);
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -51,39 +53,82 @@ function SignUp() {
         <div className="absolute top-0 left-0">
           <NavLog />
         </div>
-        <div className="bg-[#fafafa] max-w-[450px] sm:w-full w-[350px] rounded-md shadow-lg">
+        <div className="bg-[#fafafa] max-w-[400px] sm:w-full w-[350px] rounded-md shadow-lg">
           <div className="flex  flex-col items-center h-full w-full py-10">
             <div className="text-black font-bold text-4xl">Sign up</div>
             {error && (
-              <span className="text-red-400 px-2 py-3 text-start w-full">
+              <span className="text-red-400 px-2 py-3 text-center w-[95%]">
                 {error}
               </span>
             )}
             <form onSubmit={handleSubmit(Create)}>
-              <div className="flex flex-col gap-5 pt-4">
-                <Input
-                  label="Enter your name?"
-                  {...register("name")}
-                  placeholder={"Enter your Name"}
-                  type="text"
-                  required={true}
-                />
-                <Input
-                  label="Email"
-                  {...register("email")}
-                  placeholder="Enter email"
-                  type="email"
-                  required={true}
-                />
-                <Input
-                  type={passwordVisible ? "password" : "text"}
-                  label="Password"
-                  password={passwordVisible ? "show" : "hide"}
-                  onClick={TogglePassInvisibility}
-                  {...register("password")}
-                  placeholder="create a new password"
-                  required={true}
-                />
+              <div className="flex flex-col gap-5 pt-4 px-5">
+                <div>
+                  <Input
+                    label="Enter your name?"
+                    {...register("name", {
+                      required: true,
+                      minLength: 2,
+                      pattern: {
+                        value: /^^[A-Za-z]+(?:[' -][A-Za-z]+)*$/,
+                        message:
+                          "Invalid name format. Letters only, no numbers or special characters at the start",
+                      },
+                    })}
+                    placeholder={"Enter your Name"}
+                    type="text"
+                    required={true}
+                  />
+                  {errors.name && (
+                    <p className="text-red-500 text-sm text-start w-full">
+                      {errors.name.message}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <Input
+                    label="Email"
+                    {...register("email", {
+                      required: true,
+                      pattern: {
+                        value:
+                          /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+                        message: "Email address must be a valid address",
+                      },
+                    })}
+                    placeholder="Enter email"
+                    type="email"
+                    required={true}
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm text-start w-[90%]">
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <Input
+                    type={passwordVisible ? "password" : "text"}
+                    label="Password"
+                    password={passwordVisible ? "show" : "hide"}
+                    onClick={TogglePassInvisibility}
+                    {...register("password", {
+                      required: true,
+                      minLength: {
+                        value: 8,
+                        message: "Password must be at least 8 character long",
+                      },
+                    })}
+                    placeholder="create a new password"
+                    required={true}
+                  />
+                  {errors.password && (
+                    <p className="text-red-500 text-sm text-start w-[90%]">
+                      {errors.password.message}
+                    </p>
+                  )}
+                </div>
                 <ButtonJS children={"Sign up"} type="submit" />
               </div>
             </form>

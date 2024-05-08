@@ -4,8 +4,6 @@ import React from "react";
 function Skelly() {
   return (
     <Stack spacing={1}>
-      <Skeleton variant="text" sx={{ fontSize: "18px" }} animation="wave" />
-      <Skeleton variant="text" sx={{ fontSize: "14px" }} animation="wave" />
       <div className="flex gap-3">
         <Skeleton variant="circular" width={40} height={40} animation="wave" />
         <div className="grid gap-1">
@@ -23,10 +21,11 @@ function Skelly() {
           />
         </div>
       </div>
+      <Skeleton variant="text" sx={{ fontSize: "18px" }} animation="wave" />
+      <Skeleton variant="text" sx={{ fontSize: "14px" }} animation="wave" />
     </Stack>
   );
 }
-
 
 export default function SkellyLoad() {
   return (
